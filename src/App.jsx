@@ -3165,7 +3165,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                               </div>
                             );
                           });
-                      })()}}
+                      })()}
                     </div>
                   </>
                 )}
