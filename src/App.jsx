@@ -14,7 +14,7 @@ const PadelTournament = () => {
   
   const initialTeams = {
     girone1: [
-      { id: 1, name: 'ASTUTI / COMPAGNO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+      { id: 1, name: 'ASTUTI / CRISPI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
       { id: 2, name: 'CARUSO / BIRTOLO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
       { id: 3, name: 'SANTANGELO / LO RE', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
       { id: 4, name: 'CICCIA / NICOLOSI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
@@ -24,8 +24,8 @@ const PadelTournament = () => {
       { id: 6, name: 'NASO / SINATRA L', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
       { id: 7, name: 'FALLICA / SINATRA P', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
       { id: 8, name: 'CARBONARO / ASERO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-      { id: 9, name: 'SQ9 G1 / SQ9 G2', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-      { id: 10, name: 'SQ10 G1 / SQ10 G2', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 }
+      { id: 9, name: 'TIRENNA / DI MAIO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+      { id: 10, name: 'BELLIA / SALPIETRO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 }
     ]
   };
 
@@ -719,7 +719,7 @@ const PadelTournament = () => {
     try {
       const freshTeams = {
         girone1: [
-          { id: 1, name: 'ASTUTI / COMPAGNO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 1, name: 'ASTUTI / CRISPI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
           { id: 2, name: 'CARUSO / BIRTOLO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
           { id: 3, name: 'SANTANGELO / LO RE', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
           { id: 4, name: 'CICCIA / NICOLOSI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
@@ -729,8 +729,8 @@ const PadelTournament = () => {
           { id: 6, name: 'NASO / SINATRA L', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
           { id: 7, name: 'FALLICA / SINATRA P', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
           { id: 8, name: 'CARBONARO / ASERO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-          { id: 9, name: 'SQ9 G1 / SQ9 G2', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-          { id: 10, name: 'SQ10 G1 / SQ10 G2', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 }
+          { id: 9, name: 'TIRENNA / DI MAIO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 10, name: 'BELLIA / SALPIETRO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 }
         ]
       };
       
@@ -1170,7 +1170,7 @@ const PadelTournament = () => {
     if (window.confirm('Sei sicuro di voler ripristinare tutti i nomi delle squadre? Questo cancellerà anche tutti i risultati e le presenze.')) {
       const freshTeams = {
         girone1: [
-          { id: 1, name: 'ASTUTI / COMPAGNO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 1, name: 'ASTUTI / CRISPI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
           { id: 2, name: 'CARUSO / BIRTOLO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
           { id: 3, name: 'SANTANGELO / LO RE', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
           { id: 4, name: 'CICCIA / NICOLOSI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
@@ -1180,8 +1180,8 @@ const PadelTournament = () => {
           { id: 6, name: 'NASO / SINATRA L', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
           { id: 7, name: 'FALLICA / SINATRA P', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
           { id: 8, name: 'CARBONARO / ASERO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-          { id: 9, name: 'SQ9 G1 / SQ9 G2', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-          { id: 10, name: 'SQ10 G1 / SQ10 G2', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 }
+          { id: 9, name: 'TIRENNA / DI MAIO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 10, name: 'BELLIA / SALPIETRO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 }
         ]
       };
       
@@ -3165,7 +3165,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                               </div>
                             );
                           });
-                      })()}
+                      })()}}
                     </div>
                   </>
                 )}
