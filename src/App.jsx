@@ -14,7 +14,7 @@ const PadelTournament = () => {
   
   const initialTeams = {
     girone1: [
-      { id: 1, name: 'ASTUTI / CRISPI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+      { id: 1, name: 'ASTUTI / PERROTTA', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
       { id: 2, name: 'CARUSO / BIRTOLO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
       { id: 3, name: 'SANTANGELO / LO RE', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
       { id: 4, name: 'CICCIA / NICOLOSI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
