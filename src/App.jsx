@@ -14,18 +14,18 @@ const PadelTournament = () => {
   
   const initialTeams = {
     girone1: [
-      { id: 1, name: 'ASTUTI / PERROTTA', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-      { id: 2, name: 'CARUSO / BIRTOLO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-      { id: 3, name: 'SANTANGELO / LO RE', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-      { id: 4, name: 'CICCIA / NICOLOSI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-      { id: 5, name: 'RONSIVALLE / LONGO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 }
+      { id: 1, name: 'NIBALI - CICCIA', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+      { id: 2, name: 'TIRENNA - DI MAIO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+      { id: 3, name: 'NICOLOSI - CONDORELLI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+      { id: 4, name: 'CARBONARO - ASERO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+      { id: 5, name: 'SALPIETRO - BELLIA', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 }
     ],
     girone2: [
-      { id: 6, name: 'NASO / SINATRA L', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-      { id: 7, name: 'FALLICA / SINATRA P', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-      { id: 8, name: 'CARBONARO / ASERO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-      { id: 9, name: 'TIRENNA / DI MAIO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-      { id: 10, name: 'BELLIA / SALPIETRO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 }
+      { id: 6, name: 'RONSIVALLE - LONGO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+      { id: 7, name: 'LO RE - SANTANGELO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+      { id: 8, name: 'BIRTOLO - CORDOVANA', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+      { id: 9, name: 'ASTUTI - PERROTTA', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+      { id: 10, name: 'FALLICA - SINATRA', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 }
     ]
   };
 
@@ -464,16 +464,9 @@ const PadelTournament = () => {
     );
     
     // Calcola automaticamente la durata se la partita era in corso (in secondi)
-    let duration = selectedMatch.duration ? parseInt(selectedMatch.duration) * 60 : null;
-    let startTime = ongoingMatch ? ongoingMatch.startTime : Date.now();
-    let endTime = Date.now();
-    
+    let duration = selectedMatch.duration ? parseInt(selectedMatch.duration) * 60 : null; // converti minuti in secondi
     if (ongoingMatch && !selectedMatch.duration) {
-      duration = Math.round((endTime - ongoingMatch.startTime) / 1000);
-    } else if (!ongoingMatch && !selectedMatch.duration) {
-      // Se non c'era partita in corso e non è stata specificata durata, usa 30 minuti di default
-      startTime = endTime - (30 * 60 * 1000);
-      duration = 30 * 60;
+      duration = Math.round((Date.now() - ongoingMatch.startTime) / 1000); // Secondi
     }
     
     const newMatch = {
@@ -484,8 +477,6 @@ const PadelTournament = () => {
       score1,
       score2,
       duration,
-      startTime,
-      endTime,
       winner: score1 > score2 ? selectedMatch.team1 : selectedMatch.team2
     };
 
@@ -719,18 +710,20 @@ const PadelTournament = () => {
     try {
       const freshTeams = {
         girone1: [
-          { id: 1, name: 'ASTUTI / CRISPI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-          { id: 2, name: 'CARUSO / BIRTOLO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-          { id: 3, name: 'SANTANGELO / LO RE', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-          { id: 4, name: 'CICCIA / NICOLOSI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-          { id: 5, name: 'RONSIVALLE / LONGO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 }
+          { id: 1, name: 'NICOLOSI / BUEMI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 2, name: 'SANTANGELO / BUEMI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 3, name: 'SALPIETRO / CORSARO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 4, name: 'CORDOVANA / PIANA', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 5, name: 'CARUSO / NIBALI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 6, name: "MARTELLA / PATERNO'", wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 }
         ],
         girone2: [
-          { id: 6, name: 'NASO / SINATRA L', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-          { id: 7, name: 'FALLICA / SINATRA P', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-          { id: 8, name: 'CARBONARO / ASERO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-          { id: 9, name: 'TIRENNA / DI MAIO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-          { id: 10, name: 'BELLIA / SALPIETRO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 }
+          { id: 7, name: 'BIRTOLO / FORTESE', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 8, name: 'LO RE / FAZIO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 9, name: 'BELLIA / ASTUTI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 10, name: 'RONSIVALLE / LAUDANI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 11, name: 'CORALLO / LAUDANI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 12, name: 'SPINELLI / SCUDERI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 }
         ]
       };
       
@@ -880,22 +873,6 @@ const PadelTournament = () => {
   };
 
   const getMatchDuration = (match) => {
-    // Cerca prima nelle partite finali
-    if (match.girone === 'finale' || match.type) {
-      const ongoing = ongoingFinalMatches.find(
-        m => m.type === match.type ||
-             ((m.team1 === match.team1 && m.team2 === match.team2) ||
-              (m.team1 === match.team2 && m.team2 === match.team1))
-      );
-      if (!ongoing) return { minutes: 0, seconds: 0 };
-      const totalSeconds = Math.floor((currentTime - ongoing.startTime) / 1000);
-      return {
-        minutes: Math.floor(totalSeconds / 60),
-        seconds: totalSeconds % 60
-      };
-    }
-    
-    // Altrimenti cerca nelle partite normali
     const ongoing = ongoingMatches.find(
       m => m.girone === match.girone &&
            ((m.team1 === match.team1 && m.team2 === match.team2) ||
@@ -1050,8 +1027,7 @@ const PadelTournament = () => {
 
     const score1 = parseInt(quickResult.score1);
     const score2 = parseInt(quickResult.score2);
-    const endTime = Date.now();
-    const duration = Math.round((endTime - ongoingMatch.startTime) / 1000);
+    const duration = Math.round((Date.now() - ongoingMatch.startTime) / 1000); // Secondi
 
     const newMatch = {
       id: Date.now(),
@@ -1061,8 +1037,6 @@ const PadelTournament = () => {
       score1,
       score2,
       duration,
-      startTime: ongoingMatch.startTime,
-      endTime,
       winner: score1 > score2 ? ongoingMatch.team1 : ongoingMatch.team2
     };
 
@@ -1170,18 +1144,20 @@ const PadelTournament = () => {
     if (window.confirm('Sei sicuro di voler ripristinare tutti i nomi delle squadre? Questo cancellerà anche tutti i risultati e le presenze.')) {
       const freshTeams = {
         girone1: [
-          { id: 1, name: 'ASTUTI / CRISPI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-          { id: 2, name: 'CARUSO / BIRTOLO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-          { id: 3, name: 'SANTANGELO / LO RE', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-          { id: 4, name: 'CICCIA / NICOLOSI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-          { id: 5, name: 'RONSIVALLE / LONGO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 }
+          { id: 1, name: 'NICOLOSI / BUEMI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 2, name: 'SANTANGELO / BUEMI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 3, name: 'SALPIETRO / CORSARO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 4, name: 'CORDOVANA / PIANA', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 5, name: 'CARUSO / NIBALI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 6, name: "MARTELLA / PATERNO'", wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 }
         ],
         girone2: [
-          { id: 6, name: 'NASO / SINATRA L', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-          { id: 7, name: 'FALLICA / SINATRA P', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-          { id: 8, name: 'CARBONARO / ASERO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-          { id: 9, name: 'TIRENNA / DI MAIO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
-          { id: 10, name: 'BELLIA / SALPIETRO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 }
+          { id: 7, name: 'BIRTOLO / FORTESE', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 8, name: 'LO RE / FAZIO', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 9, name: 'BELLIA / ASTUTI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 10, name: 'RONSIVALLE / LAUDANI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 11, name: 'CORALLO / LAUDANI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 },
+          { id: 12, name: 'SPINELLI / SCUDERI', wins: 0, losses: 0, gamesWon: 0, gamesLost: 0, points: 0 }
         ]
       };
       
@@ -1292,7 +1268,7 @@ tr:hover{background:#f8f9ff}
 <div class="stat-box">
 <div class="stat-label">Partite Totali</div>
 <div class="stat-value">${matches.length}</div>
-<div class="stat-label">su 20 (${((matches.length/20)*100).toFixed(0)}%)</div>
+<div class="stat-label">su 30 (${((matches.length/30)*100).toFixed(0)}%)</div>
 </div>
 <div class="stat-box">
 <div class="stat-label">Game Totali</div>
@@ -1306,17 +1282,17 @@ tr:hover{background:#f8f9ff}
 <div class="stat-box">
 <div class="stat-label">Girone 1</div>
 <div class="stat-value">${girone1Matches.length}</div>
-<div class="stat-label">partite (${((girone1Matches.length/10)*100).toFixed(0)}%)</div>
+<div class="stat-label">partite (${((girone1Matches.length/15)*100).toFixed(0)}%)</div>
 </div>
 <div class="stat-box">
 <div class="stat-label">Girone 2</div>
 <div class="stat-value">${girone2Matches.length}</div>
-<div class="stat-label">partite (${((girone2Matches.length/10)*100).toFixed(0)}%)</div>
+<div class="stat-label">partite (${((girone2Matches.length/15)*100).toFixed(0)}%)</div>
 </div>
 <div class="stat-box">
 <div class="stat-label">Squadre Totali</div>
-<div class="stat-value">10</div>
-<div class="stat-label">5 per girone</div>
+<div class="stat-value">12</div>
+<div class="stat-label">6 per girone</div>
 </div>
 </div>
 </div>
@@ -1499,7 +1475,7 @@ ${calculateStandings(teams.girone2).slice(0,2).map((t,i)=>`
 <div class="section">
 <div class="section-title">🥇 CLASSIFICA COMPLETA GIRONE 1</div>
 <div style="background:#fef3c7;padding:12px;border-radius:8px;border:2px solid #f59e0b;margin-bottom:15px;text-align:center">
-<strong style="color:#92400e">📊 ${girone1Matches.length}/10 partite giocate (${((girone1Matches.length/10)*100).toFixed(0)}%)</strong>
+<strong style="color:#92400e">📊 ${girone1Matches.length}/15 partite giocate (${((girone1Matches.length/15)*100).toFixed(0)}%)</strong>
 </div>
 <table>
 <tr><th>Pos</th><th>Squadra</th><th>PG</th><th>V</th><th>P</th><th>GF</th><th>GS</th><th>+/-</th><th>Pt</th><th>%V</th></tr>
@@ -1515,7 +1491,7 @@ return `<tr class="${i<2?'highlight':''}"><td><b>${i+1}°</b></td><td><b>${t.nam
 <div class="section">
 <div class="section-title">🥇 CLASSIFICA COMPLETA GIRONE 2</div>
 <div style="background:#dbeafe;padding:12px;border-radius:8px;border:2px solid #3b82f6;margin-bottom:15px;text-align:center">
-<strong style="color:#1e3a8a">📊 ${girone2Matches.length}/10 partite giocate (${((girone2Matches.length/10)*100).toFixed(0)}%)</strong>
+<strong style="color:#1e3a8a">📊 ${girone2Matches.length}/15 partite giocate (${((girone2Matches.length/15)*100).toFixed(0)}%)</strong>
 </div>
 <table>
 <tr><th>Pos</th><th>Squadra</th><th>PG</th><th>V</th><th>P</th><th>GF</th><th>GS</th><th>+/-</th><th>Pt</th><th>%V</th></tr>
@@ -1649,7 +1625,7 @@ tr:hover{background:#f8f9ff}
 <div class="stat-box">
 <div class="stat-label">Partite Totali</div>
 <div class="stat-value">${matches.length}</div>
-<div class="stat-label">su 20 (${((matches.length/20)*100).toFixed(0)}%)</div>
+<div class="stat-label">su 30 (${((matches.length/30)*100).toFixed(0)}%)</div>
 </div>
 <div class="stat-box">
 <div class="stat-label">Game Totali</div>
@@ -1667,12 +1643,12 @@ tr:hover{background:#f8f9ff}
 <div class="stat-box">
 <div class="stat-label">Girone 1</div>
 <div class="stat-value">${girone1Matches.length}</div>
-<div class="stat-label">${((girone1Matches.length/10)*100).toFixed(0)}%</div>
+<div class="stat-label">${((girone1Matches.length/15)*100).toFixed(0)}%</div>
 </div>
 <div class="stat-box">
 <div class="stat-label">Girone 2</div>
 <div class="stat-value">${girone2Matches.length}</div>
-<div class="stat-label">${((girone2Matches.length/10)*100).toFixed(0)}%</div>
+<div class="stat-label">${((girone2Matches.length/15)*100).toFixed(0)}%</div>
 </div>
 </div>
 </div>
@@ -1934,17 +1910,11 @@ ${struggling.length > 0 ? struggling.map(t => `
       matches.forEach(m => {
         const dur = m.duration ? `${Math.floor(m.duration / 60)}:${(m.duration % 60).toString().padStart(2, '0')}` : 'N/A';
         const girone = m.girone === 'girone1' ? 'Girone 1' : 'Girone 2';
-        const orario = m.startTime && m.endTime 
-          ? `${new Date(m.startTime).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })} - ${new Date(m.endTime).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })}`
-          : '';
         html += `
 <div style="background:#f8f9ff;padding:15px;margin:10px 0;border-radius:8px;border-left:4px solid #667eea">
 <div style="display:flex;justify-content:space-between;margin-bottom:8px">
 <span style="font-size:13px;color:#666;font-weight:600">${girone}</span>
-<div style="display:flex;gap:10px">
-${orario ? `<span style="font-size:13px;color:#3b82f6;font-weight:700">🕐 ${orario}</span>` : ''}
 <span style="font-size:13px;color:#667eea;font-weight:700">⏱️ ${dur}</span>
-</div>
 </div>
 <div style="font-size:18px;font-weight:700">
 ${m.winner === m.team1 ? '🏆 ' : ''}${m.team1} <span style="color:#667eea;font-size:22px">${m.score1} - ${m.score2}</span> ${m.winner === m.team2 ? '🏆 ' : ''}${m.team2}
@@ -2305,7 +2275,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
 <body>
     <div class="header">
         <h1>🏆 ACOP Padel Indoor - Calendario Torneo</h1>
-        <p>Sistema Killer Point - 3 Campi (A, B, C)</p>
+        <p>30 Partite totali su 3 Campi - Sistema Killer Point</p>
     </div>
     
     <div class="legenda">
@@ -2409,7 +2379,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
               {/* Pulsante Refresh Manuale */}
               <button
                 onClick={() => loadData(true)}
-                className="bg-white/10 hover:bg-white/20 active:bg-white/30 text-white p-3 md:p-3.5 rounded-lg transition-all border border-white/20 flex items-center justify-center min-w-[44px] min-h-[44px]"
+                className="bg-white/10 hover:bg-white/20 active:bg-white text-gray-900 p-3 md:p-3.5 rounded-lg transition-all border border-white/20 flex items-center justify-center min-w-[44px] min-h-[44px]"
                 title="Aggiorna dati"
               >
                 <svg 
@@ -2563,7 +2533,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
         {/* Content */}
         {activeTab === 'gironi' && (
           <div className="space-y-6">
-            <div className="space-y-6">
+            <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 md:p-6 border border-white/20 shadow-lg">
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 md:mb-3 flex items-center gap-2 md:gap-3">
                 <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center font-bold text-base md:text-lg">1</div>
@@ -2571,7 +2541,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
               </h2>
               {(() => {
                 const girone1Matches = matches.filter(m => m.girone === 'girone1').length;
-                const totalGirone1 = 10;
+                const totalGirone1 = 15;
                 const percentageGirone1 = ((girone1Matches / totalGirone1) * 100).toFixed(0);
                 return (
                   <div className="bg-yellow-500/10 border border-yellow-400/30 rounded-lg p-3 mb-4">
@@ -2581,20 +2551,20 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                   </div>
                 );
               })()}
-              <div className="overflow-x-auto -mx-2 px-2">
-                <table className="w-full text-white min-w-[600px]">
+              <div className="overflow-hidden">
+                <table className="w-full text-white">
                   <thead>
                     <tr className="border-b border-white/20">
-                      <th className="text-left py-2 md:py-3 px-1 md:px-2 text-sm md:text-base w-8 md:w-10">#</th>
-                      <th className="text-left py-2 md:py-3 px-2 md:px-3 text-sm md:text-base">Squadra</th>
-                      <th className="text-center py-2 md:py-3 px-1 md:px-2 text-sm md:text-base w-10 md:w-14">PG</th>
-                      <th className="text-center py-2 md:py-3 px-1 md:px-2 text-sm md:text-base w-10 md:w-14">V</th>
-                      <th className="text-center py-2 md:py-3 px-1 md:px-2 text-sm md:text-base w-10 md:w-14">P</th>
-                      <th className="text-center py-2 md:py-3 px-1 md:px-2 text-sm md:text-base w-10 md:w-14">GF</th>
-                      <th className="text-center py-2 md:py-3 px-1 md:px-2 text-sm md:text-base w-10 md:w-14">GS</th>
-                      <th className="text-center py-2 md:py-3 px-1 md:px-2 text-sm md:text-base w-12 md:w-16">+/-</th>
-                      <th className="text-center py-2 md:py-3 px-1 md:px-2 text-sm md:text-base w-10 md:w-14">Pt</th>
-                      <th className="text-center py-2 md:py-3 px-1 md:px-2 text-sm md:text-base w-12 md:w-16">%V</th>
+                      <th className="text-left py-3 px-2 text-base md:text-lg w-10">#</th>
+                      <th className="text-left py-3 px-3 text-base md:text-lg">Squadra</th>
+                      <th className="text-center py-3 px-2 text-base md:text-lg w-14">PG</th>
+                      <th className="text-center py-3 px-2 text-base md:text-lg w-14">V</th>
+                      <th className="text-center py-3 px-2 text-base md:text-lg w-14">P</th>
+                      <th className="text-center py-3 px-2 text-base md:text-lg w-14">GF</th>
+                      <th className="text-center py-3 px-2 text-base md:text-lg w-14">GS</th>
+                      <th className="text-center py-3 px-2 text-base md:text-lg w-16">+/-</th>
+                      <th className="text-center py-3 px-2 text-base md:text-lg w-14">Pt</th>
+                      <th className="text-center py-3 px-2 text-base md:text-lg w-16">%V</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -2603,8 +2573,8 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                       const winPercentage = totalMatches > 0 ? ((team.wins / totalMatches) * 100).toFixed(0) : 0;
                       return (
                         <tr key={team.id} className={`border-b border-white/10 ${idx < 2 ? 'bg-green-500/20' : ''}`}>
-                          <td className="py-2 md:py-3 px-1 font-bold text-sm md:text-base">{idx + 1}</td>
-                          <td className="py-2 md:py-3 px-2 text-sm md:text-base">
+                          <td className="py-3 px-1 font-bold text-base md:text-lg">{idx + 1}</td>
+                          <td className="py-3 px-2 text-base md:text-lg">
                             {editingTeam === team.id && userRole === 'organizer' ? (
                               <input
                                 type="text"
@@ -2617,7 +2587,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                                   }
                                 }}
                                 autoFocus
-                                className="bg-white/20 text-white px-2 py-1 rounded border border-white/30 w-full text-sm md:text-base"
+                                className="bg-white/20 text-white px-2 py-1 rounded border border-white/30 w-full"
                               />
                             ) : (
                               <span
@@ -2634,18 +2604,18 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                               </span>
                             )}
                           </td>
-                          <td className="text-center py-2 md:py-3 px-1 text-sm md:text-base text-blue-400 font-semibold">{totalMatches}</td>
-                          <td className="text-center py-2 md:py-3 px-1 text-sm md:text-base">{team.wins}</td>
-                          <td className="text-center py-2 md:py-3 px-1 text-sm md:text-base">{team.losses}</td>
-                          <td className="text-center py-2 md:py-3 px-1 text-sm md:text-base text-green-400">{team.gamesWon}</td>
-                          <td className="text-center py-2 md:py-3 px-1 text-sm md:text-base text-red-400">{team.gamesLost}</td>
-                          <td className="text-center py-2 md:py-3 px-1 text-sm md:text-base font-bold">
+                          <td className="text-center py-3 px-1 text-base md:text-lg text-blue-400 font-semibold">{totalMatches}</td>
+                          <td className="text-center py-3 px-1 text-base md:text-lg">{team.wins}</td>
+                          <td className="text-center py-3 px-1 text-base md:text-lg">{team.losses}</td>
+                          <td className="text-center py-3 px-1 text-base md:text-lg text-green-400">{team.gamesWon}</td>
+                          <td className="text-center py-3 px-1 text-base md:text-lg text-red-400">{team.gamesLost}</td>
+                          <td className="text-center py-3 px-1 text-base md:text-lg font-bold">
                             <span className={team.gamesWon - team.gamesLost >= 0 ? 'text-green-400' : 'text-red-400'}>
                               {team.gamesWon - team.gamesLost > 0 ? '+' : ''}{team.gamesWon - team.gamesLost}
                             </span>
                           </td>
-                          <td className="text-center py-2 md:py-3 px-1 font-bold text-yellow-400 text-sm md:text-base">{team.points}</td>
-                          <td className="text-center py-2 md:py-3 px-1 text-sm md:text-base">{winPercentage}%</td>
+                          <td className="text-center py-3 px-1 font-bold text-yellow-400 text-base md:text-lg">{team.points}</td>
+                          <td className="text-center py-3 px-1 text-base md:text-lg">{winPercentage}%</td>
                         </tr>
                       );
                     })}
@@ -2665,7 +2635,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
               </h2>
               {(() => {
                 const girone2Matches = matches.filter(m => m.girone === 'girone2').length;
-                const totalGirone2 = 10;
+                const totalGirone2 = 15;
                 const percentageGirone2 = ((girone2Matches / totalGirone2) * 100).toFixed(0);
                 return (
                   <div className="bg-cyan-500/10 border border-cyan-400/30 rounded-lg p-3 mb-4">
@@ -2675,20 +2645,20 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                   </div>
                 );
               })()}
-              <div className="overflow-x-auto -mx-2 px-2">
-                <table className="w-full text-white min-w-[600px]">
+              <div className="overflow-hidden">
+                <table className="w-full text-white min-w-[700px]">
                   <thead>
                     <tr className="border-b border-white/20">
-                      <th className="text-left py-2 md:py-3 px-1 md:px-2 text-sm md:text-base w-8 md:w-10">#</th>
-                      <th className="text-left py-2 md:py-3 px-2 md:px-3 text-sm md:text-base">Squadra</th>
-                      <th className="text-center py-2 md:py-3 px-1 md:px-2 text-sm md:text-base w-10 md:w-14">PG</th>
-                      <th className="text-center py-2 md:py-3 px-1 md:px-2 text-sm md:text-base w-10 md:w-14">V</th>
-                      <th className="text-center py-2 md:py-3 px-1 md:px-2 text-sm md:text-base w-10 md:w-14">P</th>
-                      <th className="text-center py-2 md:py-3 px-1 md:px-2 text-sm md:text-base w-10 md:w-14">GF</th>
-                      <th className="text-center py-2 md:py-3 px-1 md:px-2 text-sm md:text-base w-10 md:w-14">GS</th>
-                      <th className="text-center py-2 md:py-3 px-1 md:px-2 text-sm md:text-base w-12 md:w-16">+/-</th>
-                      <th className="text-center py-2 md:py-3 px-1 md:px-2 text-sm md:text-base w-10 md:w-14">Pt</th>
-                      <th className="text-center py-2 md:py-3 px-1 md:px-2 text-sm md:text-base w-12 md:w-16">%V</th>
+                      <th className="text-left py-3 px-2 text-base md:text-lg w-10">#</th>
+                      <th className="text-left py-3 px-3 text-base md:text-lg">Squadra</th>
+                      <th className="text-center py-3 px-2 text-base md:text-lg w-14">PG</th>
+                      <th className="text-center py-3 px-2 text-base md:text-lg w-14">V</th>
+                      <th className="text-center py-3 px-2 text-base md:text-lg w-14">P</th>
+                      <th className="text-center py-3 px-2 text-base md:text-lg w-14">GF</th>
+                      <th className="text-center py-3 px-2 text-base md:text-lg w-14">GS</th>
+                      <th className="text-center py-3 px-2 text-base md:text-lg w-16">+/-</th>
+                      <th className="text-center py-3 px-2 text-base md:text-lg w-14">Pt</th>
+                      <th className="text-center py-3 px-2 text-base md:text-lg w-16">%V</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -2697,8 +2667,8 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                       const winPercentage = totalMatches > 0 ? ((team.wins / totalMatches) * 100).toFixed(0) : 0;
                       return (
                         <tr key={team.id} className={`border-b border-white/10 ${idx < 2 ? 'bg-green-500/20' : ''}`}>
-                          <td className="py-2 md:py-3 px-1 font-bold text-sm md:text-base">{idx + 1}</td>
-                          <td className="py-2 md:py-3 px-2 text-sm md:text-base">
+                          <td className="py-3 px-1 font-bold text-base md:text-lg">{idx + 1}</td>
+                          <td className="py-3 px-2 text-base md:text-lg">
                             {editingTeam === team.id && userRole === 'organizer' ? (
                               <input
                                 type="text"
@@ -2711,7 +2681,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                                   }
                                 }}
                                 autoFocus
-                                className="bg-white/20 text-white px-2 py-1 rounded border border-white/30 w-full text-sm md:text-base"
+                                className="bg-white/20 text-white px-2 py-1 rounded border border-white/30 w-full"
                               />
                             ) : (
                               <span
@@ -2728,18 +2698,18 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                               </span>
                             )}
                           </td>
-                          <td className="text-center py-2 md:py-3 px-1 text-sm md:text-base text-blue-400 font-semibold">{totalMatches}</td>
-                          <td className="text-center py-2 md:py-3 px-1 text-sm md:text-base">{team.wins}</td>
-                          <td className="text-center py-2 md:py-3 px-1 text-sm md:text-base">{team.losses}</td>
-                          <td className="text-center py-2 md:py-3 px-1 text-sm md:text-base text-green-400">{team.gamesWon}</td>
-                          <td className="text-center py-2 md:py-3 px-1 text-sm md:text-base text-red-400">{team.gamesLost}</td>
-                          <td className="text-center py-2 md:py-3 px-1 text-sm md:text-base font-bold">
+                          <td className="text-center py-3 px-1 text-base md:text-lg text-blue-400 font-semibold">{totalMatches}</td>
+                          <td className="text-center py-3 px-1 text-base md:text-lg">{team.wins}</td>
+                          <td className="text-center py-3 px-1 text-base md:text-lg">{team.losses}</td>
+                          <td className="text-center py-3 px-1 text-base md:text-lg text-green-400">{team.gamesWon}</td>
+                          <td className="text-center py-3 px-1 text-base md:text-lg text-red-400">{team.gamesLost}</td>
+                          <td className="text-center py-3 px-1 text-base md:text-lg font-bold">
                             <span className={team.gamesWon - team.gamesLost >= 0 ? 'text-green-400' : 'text-red-400'}>
                               {team.gamesWon - team.gamesLost > 0 ? '+' : ''}{team.gamesWon - team.gamesLost}
                             </span>
                           </td>
-                          <td className="text-center py-2 md:py-3 px-1 font-bold text-yellow-400 text-sm md:text-base">{team.points}</td>
-                          <td className="text-center py-2 md:py-3 px-1 text-sm md:text-base">{winPercentage}%</td>
+                          <td className="text-center py-3 px-1 font-bold text-yellow-400 text-base md:text-lg">{team.points}</td>
+                          <td className="text-center py-3 px-1 text-base md:text-lg">{winPercentage}%</td>
                         </tr>
                       );
                     })}
@@ -2836,7 +2806,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                   <span className="text-white font-semibold">Mostra solo partite disponibili</span>
                 </label>
                 <div className="text-white/80">
-                  <span className="font-bold text-green-400">{presentTeams.size}</span> / 10 squadre presenti
+                  <span className="font-bold text-green-400">{presentTeams.size}</span> / 12 squadre presenti
                 </div>
               </div>
             </div>
@@ -2917,20 +2887,20 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                                 <div className="flex items-center gap-2">
                                   <input
                                     type="number"
-                                    placeholder="Game"
+                                    placeholder="0"
                                     value={quickResult.score1}
                                     onChange={(e) => setQuickResult({ ...quickResult, score1: e.target.value })}
-                                    className="flex-1 bg-white/30 text-white text-center font-bold text-xl md:text-2xl rounded-lg px-2 py-2 border-2 border-white/50 max-w-[80px]"
+                                    className="flex-1 bg-white text-gray-900 text-center font-bold text-xl rounded-lg px-3 py-3 border-2 border-gray-300 shadow-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                     min="0"
                                     autoFocus
                                   />
-                                  <span className="text-white font-bold text-lg md:text-xl">-</span>
+                                  <span className="text-white font-bold text-xl">-</span>
                                   <input
                                     type="number"
-                                    placeholder="Game"
+                                    placeholder="0"
                                     value={quickResult.score2}
                                     onChange={(e) => setQuickResult({ ...quickResult, score2: e.target.value })}
-                                    className="flex-1 bg-white/30 text-white text-center font-bold text-xl md:text-2xl rounded-lg px-2 py-2 border-2 border-white/50 max-w-[80px]"
+                                    className="flex-1 bg-white text-gray-900 text-center font-bold text-xl rounded-lg px-3 py-3 border-2 border-gray-300 shadow-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                     min="0"
                                   />
                                 </div>
@@ -2978,7 +2948,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                                       setFinishingMatch(partita);
                                       setQuickResult({ score1: '', score2: '' });
                                     }}
-                                    className="w-full mt-3 bg-white/30 hover:bg-white/40 active:bg-white/50 text-white font-bold py-3 rounded-lg transition-all border-2 border-white/50 text-sm md:text-base"
+                                    className="w-full mt-3 bg-white/30 hover:bg-white/40 active:bg-white/50 text-white font-bold py-3 rounded-lg transition-all border-2 border-gray-400 text-sm md:text-base"
                                   >
                                     🏁 Partita Finita
                                   </button>
@@ -3052,7 +3022,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                               <div 
                                 key={idx}
                                 className={`bg-gradient-to-br ${campoColor} rounded-xl p-4 md:p-5 border-2 ${
-                                  campoOccupied ? 'border-red-400/50 opacity-60' : 'border-white/50'
+                                  campoOccupied ? 'border-red-400/50 opacity-60' : 'border-gray-400'
                                 } shadow-lg`}
                               >
                                 <div className="mb-3">
@@ -3142,7 +3112,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                             return (
                               <div 
                                 key={idx}
-                                className={`bg-gradient-to-br ${campoColor} rounded-xl p-4 border-2 border-white/50 shadow-lg`}
+                                className={`bg-gradient-to-br ${campoColor} rounded-xl p-4 border-2 border-gray-400 shadow-lg`}
                               >
                                 <div className="flex items-center justify-between mb-3">
                                   <span className="font-bold text-white text-lg">Campo {partita.campo}</span>
@@ -3165,7 +3135,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                               </div>
                             );
                           });
-                      })()}}
+                      })()}
                     </div>
                   </>
                 )}
@@ -3230,7 +3200,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                   <p className="text-3xl font-bold text-purple-400">
                     {((scheduleWithStatus.reduce((sum, turno) => 
                       sum + turno.partite.filter(p => p.played).length, 0
-                    ) / 20) * 100).toFixed(0)}%
+                    ) / 30) * 100).toFixed(0)}%
                   </p>
                 </div>
               </div>
@@ -3443,14 +3413,113 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
 
         {activeTab === 'risultati' && (
           <div className="space-y-6">
+            {/* Inserisci Risultato */}
+            {userRole === 'organizer' && (
+              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-5 md:p-8 border border-white/20 shadow-lg">
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 md:mb-6">Inserisci Risultato</h2>
+              
+              {/* Avviso partita in corso */}
+              {selectedMatch.team1 && selectedMatch.team2 && (() => {
+                const ongoing = ongoingMatches.find(
+                  m => m.girone === selectedMatch.girone &&
+                       ((m.team1 === selectedMatch.team1 && m.team2 === selectedMatch.team2) ||
+                        (m.team1 === selectedMatch.team2 && m.team2 === selectedMatch.team1))
+                );
+                if (ongoing) {
+                  const duration = Math.floor((currentTime - ongoing.startTime) / 60000);
+                  return (
+                    <div className="mb-4 bg-yellow-500/20 border-2 border-yellow-400 rounded-lg p-3 md:p-4">
+                      <div className="flex items-center gap-2 md:gap-3">
+                        <Clock className="w-5 h-5 md:w-6 md:h-6 text-yellow-400 animate-pulse" />
+                        <div>
+                          <p className="text-yellow-400 font-bold text-sm md:text-base">Partita in corso!</p>
+                          <p className="text-white/80 text-xs md:text-sm">
+                            Tempo: {duration} minuti - Verrà calcolato automaticamente
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+              })()}
+              
+              <div className="grid grid-cols-2 md:grid-cols-6 gap-3 md:gap-4">
+                <select
+                  value={selectedMatch.girone}
+                  onChange={(e) => setSelectedMatch({ ...selectedMatch, girone: e.target.value, team1: '', team2: '' })}
+                  className="col-span-2 md:col-span-1 bg-white/20 text-white rounded-lg px-4 md:px-5 py-3 md:py-4 border border-white/30 focus:outline-none focus:border-white text-base md:text-lg min-h-[52px]"
+                  style={{ color: 'white' }}
+                >
+                  <option value="girone1" style={{ background: '#1e293b', color: 'white' }}>Girone 1</option>
+                  <option value="girone2" style={{ background: '#1e293b', color: 'white' }}>Girone 2</option>
+                </select>
+                <select
+                  value={selectedMatch.team1}
+                  onChange={(e) => setSelectedMatch({ ...selectedMatch, team1: e.target.value })}
+                  className="col-span-2 md:col-span-1 bg-white/20 text-white rounded-lg px-4 md:px-5 py-3 md:py-4 border border-white/30 focus:outline-none focus:border-white text-base md:text-lg min-h-[52px]"
+                  style={{ color: 'white' }}
+                >
+                  <option value="" style={{ background: '#1e293b', color: 'white' }}>Squadra 1</option>
+                  {teams[selectedMatch.girone].map(team => (
+                    <option key={team.id} value={team.name} style={{ background: '#1e293b', color: 'white' }}>{team.name}</option>
+                  ))}
+                </select>
+                <input
+                  type="number"
+                  placeholder="Giochi"
+                  value={selectedMatch.score1}
+                  onChange={(e) => setSelectedMatch({ ...selectedMatch, score1: e.target.value })}
+                  className="col-span-1 md:col-span-1 bg-white/20 text-white rounded-lg px-4 md:px-5 py-3 md:py-4 border border-white/30 focus:outline-none focus:border-white text-center text-base md:text-lg min-h-[52px]"
+                  min="0"
+                />
+                <select
+                  value={selectedMatch.team2}
+                  onChange={(e) => setSelectedMatch({ ...selectedMatch, team2: e.target.value })}
+                  className="col-span-2 md:col-span-1 bg-white/20 text-white rounded-lg px-4 md:px-5 py-3 md:py-4 border border-white/30 focus:outline-none focus:border-white text-base md:text-lg min-h-[52px]"
+                  style={{ color: 'white' }}
+                >
+                  <option value="" style={{ background: '#1e293b', color: 'white' }}>Squadra 2</option>
+                  {teams[selectedMatch.girone]
+                    .filter(team => team.name !== selectedMatch.team1)
+                    .map(team => (
+                      <option key={team.id} value={team.name} style={{ background: '#1e293b', color: 'white' }}>{team.name}</option>
+                    ))}
+                </select>
+                <input
+                  type="number"
+                  placeholder="Giochi"
+                  value={selectedMatch.score2}
+                  onChange={(e) => setSelectedMatch({ ...selectedMatch, score2: e.target.value })}
+                  className="col-span-1 md:col-span-1 bg-white/20 text-white rounded-lg px-4 md:px-5 py-3 md:py-4 border border-white/30 focus:outline-none focus:border-white text-center text-base md:text-lg min-h-[52px]"
+                  min="0"
+                />
+                <input
+                  type="number"
+                  placeholder="Min (auto)"
+                  value={selectedMatch.duration}
+                  onChange={(e) => setSelectedMatch({ ...selectedMatch, duration: e.target.value })}
+                  className="col-span-2 md:col-span-1 bg-white/20 text-white rounded-lg px-4 md:px-5 py-3 md:py-4 border border-white/30 focus:outline-none focus:border-white text-center text-base md:text-lg min-h-[52px]"
+                  min="0"
+                  title="Calcolato automaticamente se partita avviata"
+                  disabled={selectedMatch.team1 && selectedMatch.team2 && ongoingMatches.some(
+                    m => m.girone === selectedMatch.girone &&
+                         ((m.team1 === selectedMatch.team1 && m.team2 === selectedMatch.team2) ||
+                          (m.team1 === selectedMatch.team2 && m.team2 === selectedMatch.team1))
+                  )}
+                />
+              </div>
+              <button
+                onClick={addMatch}
+                className="mt-5 md:mt-6 w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold py-4 md:py-5 rounded-lg hover:from-green-600 hover:to-emerald-700 active:from-green-700 active:to-emerald-800 transition-all text-base md:text-lg min-h-[56px]"
+              >
+                Aggiungi Risultato
+              </button>
+            </div>
+            )}
+
             {/* Partite Giocate */}
             <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold text-white">Partite Giocate</h2>
-                <div className="bg-purple-500/20 px-4 py-2 rounded-lg border border-purple-400/50">
-                  <span className="text-white font-bold">{matches.length} / 20</span>
-                </div>
-              </div>
+              <h2 className="text-2xl font-bold text-white mb-4">Partite Giocate</h2>
               <div className="space-y-3">
                 {matches.length === 0 ? (
                   <p className="text-white/60 text-center py-8">Nessuna partita inserita</p>
@@ -3492,11 +3561,6 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                               {match.duration && (
                                 <span className="text-xs bg-indigo-500/20 text-indigo-400 px-2 py-1 rounded-full border border-indigo-400/50">
                                   ⏱️ {Math.floor(match.duration / 60)}:{(match.duration % 60).toString().padStart(2, '0')}
-                                </span>
-                              )}
-                              {match.startTime && match.endTime && (
-                                <span className="text-xs bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded-full border border-cyan-400/50">
-                                  🕐 {new Date(match.startTime).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })} - {new Date(match.endTime).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })}
                                 </span>
                               )}
                             </div>
@@ -3583,8 +3647,8 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                 </div>
                 <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl p-3 md:p-4 border border-purple-400/30">
                   <p className="text-white/70 text-xs md:text-sm">Partite Rimanenti</p>
-                  <p className="text-2xl md:text-3xl font-bold text-white">{20 - matches.length}</p>
-                  <p className="text-xs text-white/60 mt-1">(10 per girone)</p>
+                  <p className="text-2xl md:text-3xl font-bold text-white">{30 - matches.length}</p>
+                  <p className="text-xs text-white/60 mt-1">(15 per girone)</p>
                 </div>
                 <div className="bg-gradient-to-br from-indigo-500/20 to-blue-500/20 rounded-xl p-3 md:p-4 border border-indigo-400/30">
                   <p className="text-white/70 text-xs md:text-sm">Tempo Medio</p>
@@ -3650,7 +3714,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                   </div>
                   {(() => {
                     const girone1Matches = matches.filter(m => m.girone === 'girone1').length;
-                    const totalGirone1 = 10;
+                    const totalGirone1 = 15;
                     const percentageGirone1 = ((girone1Matches / totalGirone1) * 100).toFixed(0);
                     return (
                       <>
@@ -3668,7 +3732,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                   </div>
                   {(() => {
                     const girone2Matches = matches.filter(m => m.girone === 'girone2').length;
-                    const totalGirone2 = 10;
+                    const totalGirone2 = 15;
                     const percentageGirone2 = ((girone2Matches / totalGirone2) * 100).toFixed(0);
                     return (
                       <>
@@ -3949,16 +4013,16 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
         {activeTab === 'finali' && (
           <div className="space-y-6">
             {/* Verifica completamento gironi */}
-            {matches.length < 20 ? (
+            {matches.length < 30 ? (
               <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 text-center">
                 <Clock className="w-16 h-16 text-yellow-400 mx-auto mb-4" />
                 <h2 className="text-2xl font-bold text-white mb-2">Fase Finale Non Disponibile</h2>
                 <p className="text-white/70 mb-4">Completa tutti i gironi prima di iniziare la fase finale</p>
                 <div className="bg-yellow-500/20 rounded-lg p-4 border border-yellow-400/50 inline-block">
                   <p className="text-yellow-400 font-bold text-xl">
-                    {matches.length} / 20 partite completate
+                    {matches.length} / 30 partite completate
                   </p>
-                  <p className="text-white/60 text-sm mt-1">Mancano {20 - matches.length} partite</p>
+                  <p className="text-white/60 text-sm mt-1">Mancano {30 - matches.length} partite</p>
                 </div>
               </div>
             ) : (
@@ -4038,23 +4102,23 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                               <div className="text-white font-semibold bg-black/20 p-4 rounded text-center">
                                 {semi1Team1}
                               </div>
-                              <div className="flex items-center gap-2 justify-center">
+                              <div className="flex items-center gap-3">
                                 <input
                                   type="number"
-                                  placeholder="Game"
+                                  placeholder="0"
                                   value={quickResult.score1}
                                   onChange={(e) => setQuickResult({ ...quickResult, score1: e.target.value })}
-                                  className="w-20 md:w-24 bg-white/30 text-white text-center font-bold text-xl md:text-2xl rounded-lg px-2 py-3 border-2 border-white/50"
+                                  className="flex-1 bg-white text-gray-900 text-center font-bold text-3xl rounded-lg px-4 py-4 border-2 border-gray-400 min-h-[56px]"
                                   min="0"
                                   autoFocus
                                 />
-                                <span className="text-white font-bold text-xl md:text-2xl">-</span>
+                                <span className="text-white font-bold text-2xl">-</span>
                                 <input
                                   type="number"
-                                  placeholder="Game"
+                                  placeholder="0"
                                   value={quickResult.score2}
                                   onChange={(e) => setQuickResult({ ...quickResult, score2: e.target.value })}
-                                  className="w-20 md:w-24 bg-white/30 text-white text-center font-bold text-xl md:text-2xl rounded-lg px-2 py-3 border-2 border-white/50"
+                                  className="flex-1 bg-white text-gray-900 text-center font-bold text-3xl rounded-lg px-4 py-4 border-2 border-gray-400 min-h-[56px]"
                                   min="0"
                                 />
                               </div>
@@ -4071,8 +4135,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                                     }
                                     const score1 = parseInt(quickResult.score1);
                                     const score2 = parseInt(quickResult.score2);
-                                    const endTime = Date.now();
-                                    const duration = Math.round((endTime - semi1Ongoing.startTime) / 1000);
+                                    const duration = Math.round((Date.now() - semi1Ongoing.startTime) / 1000);
                                     
                                     const newMatch = {
                                       type: 'semifinale1',
@@ -4081,24 +4144,13 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                                       score1,
                                       score2,
                                       duration,
-                                      startTime: semi1Ongoing.startTime,
-                                      endTime,
                                       winner: score1 > score2 ? semi1Team1 : semi1Team2
                                     };
                                     
-                                    const newFinalMatches = [...finalMatches, newMatch];
-                                    const newOngoingFinal = ongoingFinalMatches.filter(m => m.type !== 'semifinale1');
-                                    
-                                    setFinalMatches(newFinalMatches);
-                                    setOngoingFinalMatches(newOngoingFinal);
+                                    setFinalMatches([...finalMatches, newMatch]);
+                                    setOngoingFinalMatches(ongoingFinalMatches.filter(m => m.type !== 'semifinale1'));
                                     setFinishingMatch(null);
                                     setQuickResult({ score1: '', score2: '' });
-                                    
-                                    // Salva immediatamente
-                                    saveImmediately({ 
-                                      finalMatches: newFinalMatches, 
-                                      ongoingFinalMatches: newOngoingFinal 
-                                    });
                                   }}
                                   className="flex-1 bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-lg transition-all min-h-[52px]"
                                 >
@@ -4131,11 +4183,6 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                                     Durata: {Math.floor(semi1Result.duration / 60)}:{(semi1Result.duration % 60).toString().padStart(2, '0')}
                                   </p>
                                 )}
-                                {semi1Result.startTime && semi1Result.endTime && (
-                                  <p className="text-white/60 text-sm mt-1">
-                                    🕐 {new Date(semi1Result.startTime).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })} - {new Date(semi1Result.endTime).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })}
-                                  </p>
-                                )}
                               </div>
                               <div className={`text-white font-semibold bg-black/20 p-4 rounded text-center ${
                                 semi1Result.winner === semi1Team2 ? 'border-2 border-green-400' : ''
@@ -4146,9 +4193,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                                 <button
                                   onClick={() => {
                                     if (window.confirm('Eliminare il risultato di questa semifinale?')) {
-                                      const newFinalMatches = finalMatches.filter(m => m.type !== 'semifinale1');
-                                      setFinalMatches(newFinalMatches);
-                                      saveImmediately({ finalMatches: newFinalMatches });
+                                      setFinalMatches(finalMatches.filter(m => m.type !== 'semifinale1'));
                                     }
                                   }}
                                   className="w-full bg-red-500/20 hover:bg-red-500/40 text-red-400 py-3 rounded-lg transition-all border border-red-400/50 font-semibold flex items-center justify-center gap-2"
@@ -4173,7 +4218,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                                     setFinishingMatch({ type: 'semifinale1' });
                                     setQuickResult({ score1: '', score2: '' });
                                   }}
-                                  className="w-full bg-white/30 hover:bg-white/40 text-white font-bold py-4 rounded-lg transition-all border-2 border-white/50 min-h-[52px]"
+                                  className="w-full bg-white/30 hover:bg-white/40 text-white font-bold py-4 rounded-lg transition-all border-2 border-gray-400 min-h-[52px]"
                                 >
                                   🏁 Partita Finita
                                 </button>
@@ -4191,15 +4236,12 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                               {userRole === 'organizer' && (
                                 <button
                                   onClick={() => {
-                                    const newOngoing = [...ongoingFinalMatches, {
+                                    setOngoingFinalMatches([...ongoingFinalMatches, {
                                       type: 'semifinale1',
                                       team1: semi1Team1,
                                       team2: semi1Team2,
                                       startTime: Date.now()
-                                    }];
-                                    setOngoingFinalMatches(newOngoing);
-                                    // Salva immediatamente per evitare conflitti con il polling
-                                    saveImmediately({ ongoingFinalMatches: newOngoing });
+                                    }]);
                                   }}
                                   className="w-full bg-white/20 hover:bg-white/30 active:bg-white/40 text-white py-3 rounded-lg transition-all font-semibold text-sm md:text-base flex items-center justify-center gap-2"
                                 >
@@ -4246,23 +4288,23 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                               <div className="text-white font-semibold bg-black/20 p-4 rounded text-center">
                                 {semi2Team1}
                               </div>
-                              <div className="flex items-center gap-2 justify-center">
+                              <div className="flex items-center gap-3">
                                 <input
                                   type="number"
-                                  placeholder="Game"
+                                  placeholder="0"
                                   value={quickResult.score1}
                                   onChange={(e) => setQuickResult({ ...quickResult, score1: e.target.value })}
-                                  className="w-20 md:w-24 bg-white/30 text-white text-center font-bold text-xl md:text-2xl rounded-lg px-2 py-3 border-2 border-white/50"
+                                  className="flex-1 bg-white text-gray-900 text-center font-bold text-3xl rounded-lg px-4 py-4 border-2 border-gray-400 min-h-[56px]"
                                   min="0"
                                   autoFocus
                                 />
-                                <span className="text-white font-bold text-xl md:text-2xl">-</span>
+                                <span className="text-white font-bold text-2xl">-</span>
                                 <input
                                   type="number"
-                                  placeholder="Game"
+                                  placeholder="0"
                                   value={quickResult.score2}
                                   onChange={(e) => setQuickResult({ ...quickResult, score2: e.target.value })}
-                                  className="w-20 md:w-24 bg-white/30 text-white text-center font-bold text-xl md:text-2xl rounded-lg px-2 py-3 border-2 border-white/50"
+                                  className="flex-1 bg-white text-gray-900 text-center font-bold text-3xl rounded-lg px-4 py-4 border-2 border-gray-400 min-h-[56px]"
                                   min="0"
                                 />
                               </div>
@@ -4279,8 +4321,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                                     }
                                     const score1 = parseInt(quickResult.score1);
                                     const score2 = parseInt(quickResult.score2);
-                                    const endTime = Date.now();
-                                    const duration = Math.round((endTime - semi2Ongoing.startTime) / 1000);
+                                    const duration = Math.round((Date.now() - semi2Ongoing.startTime) / 1000);
                                     
                                     const newMatch = {
                                       type: 'semifinale2',
@@ -4289,24 +4330,13 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                                       score1,
                                       score2,
                                       duration,
-                                      startTime: semi2Ongoing.startTime,
-                                      endTime,
                                       winner: score1 > score2 ? semi2Team1 : semi2Team2
                                     };
                                     
-                                    const newFinalMatches = [...finalMatches, newMatch];
-                                    const newOngoingFinal = ongoingFinalMatches.filter(m => m.type !== 'semifinale2');
-                                    
-                                    setFinalMatches(newFinalMatches);
-                                    setOngoingFinalMatches(newOngoingFinal);
+                                    setFinalMatches([...finalMatches, newMatch]);
+                                    setOngoingFinalMatches(ongoingFinalMatches.filter(m => m.type !== 'semifinale2'));
                                     setFinishingMatch(null);
                                     setQuickResult({ score1: '', score2: '' });
-                                    
-                                    // Salva immediatamente
-                                    saveImmediately({ 
-                                      finalMatches: newFinalMatches, 
-                                      ongoingFinalMatches: newOngoingFinal 
-                                    });
                                   }}
                                   className="flex-1 bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-lg transition-all min-h-[52px]"
                                 >
@@ -4339,11 +4369,6 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                                     Durata: {Math.floor(semi2Result.duration / 60)}:{(semi2Result.duration % 60).toString().padStart(2, '0')}
                                   </p>
                                 )}
-                                {semi2Result.startTime && semi2Result.endTime && (
-                                  <p className="text-white/60 text-sm mt-1">
-                                    🕐 {new Date(semi2Result.startTime).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })} - {new Date(semi2Result.endTime).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })}
-                                  </p>
-                                )}
                               </div>
                               <div className={`text-white font-semibold bg-black/20 p-4 rounded text-center ${
                                 semi2Result.winner === semi2Team2 ? 'border-2 border-green-400' : ''
@@ -4354,9 +4379,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                                 <button
                                   onClick={() => {
                                     if (window.confirm('Eliminare il risultato di questa semifinale?')) {
-                                      const newFinalMatches = finalMatches.filter(m => m.type !== 'semifinale2');
-                                      setFinalMatches(newFinalMatches);
-                                      saveImmediately({ finalMatches: newFinalMatches });
+                                      setFinalMatches(finalMatches.filter(m => m.type !== 'semifinale2'));
                                     }
                                   }}
                                   className="w-full bg-red-500/20 hover:bg-red-500/40 text-red-400 py-3 rounded-lg transition-all border border-red-400/50 font-semibold flex items-center justify-center gap-2"
@@ -4381,7 +4404,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                                     setFinishingMatch({ type: 'semifinale2' });
                                     setQuickResult({ score1: '', score2: '' });
                                   }}
-                                  className="w-full bg-white/30 hover:bg-white/40 text-white font-bold py-4 rounded-lg transition-all border-2 border-white/50 min-h-[52px]"
+                                  className="w-full bg-white/30 hover:bg-white/40 text-white font-bold py-4 rounded-lg transition-all border-2 border-gray-400 min-h-[52px]"
                                 >
                                   🏁 Partita Finita
                                 </button>
@@ -4399,15 +4422,12 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                               {userRole === 'organizer' && (
                                 <button
                                   onClick={() => {
-                                    const newOngoing = [...ongoingFinalMatches, {
+                                    setOngoingFinalMatches([...ongoingFinalMatches, {
                                       type: 'semifinale2',
                                       team1: semi2Team1,
                                       team2: semi2Team2,
                                       startTime: Date.now()
-                                    }];
-                                    setOngoingFinalMatches(newOngoing);
-                                    // Salva immediatamente per evitare conflitti con il polling
-                                    saveImmediately({ ongoingFinalMatches: newOngoing });
+                                    }]);
                                   }}
                                   className="w-full bg-white/20 hover:bg-white/30 active:bg-white/40 text-white py-3 rounded-lg transition-all font-semibold text-sm md:text-base flex items-center justify-center gap-2"
                                 >
@@ -4468,30 +4488,30 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                           <div className="text-white font-semibold bg-black/20 p-5 rounded-lg text-center text-xl">
                             {finaleTeam1}
                           </div>
-                          <div className="flex items-center gap-2 md:gap-3 justify-center">
+                          <div className="flex items-center gap-4">
                             <input
                               type="number"
-                              placeholder="Game"
+                              placeholder="0"
                               value={quickResult.score1}
                               onChange={(e) => setQuickResult({ ...quickResult, score1: e.target.value })}
-                              className="w-20 md:w-28 bg-white/30 text-white text-center font-bold text-2xl md:text-3xl rounded-lg px-2 py-3 md:py-4 border-2 border-white/50"
+                              className="flex-1 bg-white/90 text-gray-900 placeholder:text-gray-400 text-center font-bold text-4xl rounded-lg px-6 py-6 border-2 border-white shadow-lg"
                               min="0"
                               autoFocus
                             />
-                            <span className="text-white font-bold text-xl md:text-3xl">-</span>
+                            <span className="text-white font-bold text-3xl">-</span>
                             <input
                               type="number"
-                              placeholder="Game"
+                              placeholder="0"
                               value={quickResult.score2}
                               onChange={(e) => setQuickResult({ ...quickResult, score2: e.target.value })}
-                              className="w-20 md:w-28 bg-white/30 text-white text-center font-bold text-2xl md:text-3xl rounded-lg px-2 py-3 md:py-4 border-2 border-white/50"
+                              className="flex-1 bg-white/90 text-gray-900 placeholder:text-gray-400 text-center font-bold text-4xl rounded-lg px-6 py-6 border-2 border-white shadow-lg"
                               min="0"
                             />
                           </div>
                           <div className="text-white font-semibold bg-black/20 p-5 rounded-lg text-center text-xl">
                             {finaleTeam2}
                           </div>
-                          <div className="flex gap-3 md:gap-4 mt-6">
+                          <div className="flex gap-4 mt-6">
                             <button
                               onClick={() => {
                                 if (!quickResult.score1 || !quickResult.score2) {
@@ -4501,8 +4521,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                                 }
                                 const score1 = parseInt(quickResult.score1);
                                 const score2 = parseInt(quickResult.score2);
-                                const endTime = Date.now();
-                                const duration = Math.round((endTime - finaleOngoing.startTime) / 1000);
+                                const duration = Math.round((Date.now() - finaleOngoing.startTime) / 1000);
                                 
                                 const newMatch = {
                                   type: 'finale',
@@ -4511,24 +4530,13 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                                   score1,
                                   score2,
                                   duration,
-                                  startTime: finaleOngoing.startTime,
-                                  endTime,
                                   winner: score1 > score2 ? finaleTeam1 : finaleTeam2
                                 };
                                 
-                                const newFinalMatches = [...finalMatches, newMatch];
-                                const newOngoingFinal = ongoingFinalMatches.filter(m => m.type !== 'finale');
-                                
-                                setFinalMatches(newFinalMatches);
-                                setOngoingFinalMatches(newOngoingFinal);
+                                setFinalMatches([...finalMatches, newMatch]);
+                                setOngoingFinalMatches(ongoingFinalMatches.filter(m => m.type !== 'finale'));
                                 setFinishingMatch(null);
                                 setQuickResult({ score1: '', score2: '' });
-                                
-                                // Salva immediatamente
-                                saveImmediately({ 
-                                  finalMatches: newFinalMatches, 
-                                  ongoingFinalMatches: newOngoingFinal 
-                                });
                                 
                                 // Mostra messaggio di vittoria
                                 setTimeout(() => {
@@ -4536,7 +4544,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                                   setShowSuccessModal(true);
                                 }, 500);
                               }}
-                              className="flex-1 bg-green-500 hover:bg-green-600 text-white font-bold py-4 md:py-5 rounded-lg transition-all text-base md:text-lg"
+                              className="flex-1 bg-green-500 hover:bg-green-600 text-white font-bold py-5 rounded-lg transition-all text-lg"
                             >
                               ✓ Salva Finale
                             </button>
@@ -4545,7 +4553,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                                 setFinishingMatch(null);
                                 setQuickResult({ score1: '', score2: '' });
                               }}
-                              className="flex-1 bg-red-500/80 hover:bg-red-600 text-white font-bold py-4 md:py-5 rounded-lg transition-all text-base md:text-lg"
+                              className="flex-1 bg-red-500/80 hover:bg-red-600 text-white font-bold py-5 rounded-lg transition-all text-lg"
                             >
                               ✕ Annulla
                             </button>
@@ -4563,11 +4571,6 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                             {finaleResult.duration && (
                               <p className="text-white/80 text-lg mt-3">
                                 Durata finale: {Math.floor(finaleResult.duration / 60)}:{(finaleResult.duration % 60).toString().padStart(2, '0')}
-                              </p>
-                            )}
-                            {finaleResult.startTime && finaleResult.endTime && (
-                              <p className="text-white/70 text-base mt-2">
-                                🕐 {new Date(finaleResult.startTime).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })} - {new Date(finaleResult.endTime).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })}
                               </p>
                             )}
                           </div>
@@ -4590,9 +4593,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                               <button
                                 onClick={() => {
                                   if (window.confirm('Eliminare il risultato della finale?')) {
-                                    const newFinalMatches = finalMatches.filter(m => m.type !== 'finale');
-                                    setFinalMatches(newFinalMatches);
-                                    saveImmediately({ finalMatches: newFinalMatches });
+                                    setFinalMatches(finalMatches.filter(m => m.type !== 'finale'));
                                   }
                                 }}
                                 className="w-full mt-4 bg-red-500/20 hover:bg-red-500/40 text-red-400 py-3 rounded-lg transition-all border border-red-400/50 font-semibold flex items-center justify-center gap-2"
@@ -4618,7 +4619,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                                 setFinishingMatch({ type: 'finale' });
                                 setQuickResult({ score1: '', score2: '' });
                               }}
-                              className="w-full bg-white/30 hover:bg-white/40 text-white font-bold py-5 rounded-lg transition-all border-2 border-white/50 text-lg"
+                              className="w-full bg-white/30 hover:bg-white/40 text-white font-bold py-5 rounded-lg transition-all border-2 border-gray-400 text-lg"
                             >
                               🏁 Finale Completata
                             </button>
@@ -4636,15 +4637,12 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
                           {userRole === 'organizer' && (
                             <button
                               onClick={() => {
-                                const newOngoing = [...ongoingFinalMatches, {
+                                setOngoingFinalMatches([...ongoingFinalMatches, {
                                   type: 'finale',
                                   team1: finaleTeam1,
                                   team2: finaleTeam2,
                                   startTime: Date.now()
-                                }];
-                                setOngoingFinalMatches(newOngoing);
-                                // Salva immediatamente per evitare conflitti con il polling
-                                saveImmediately({ ongoingFinalMatches: newOngoing });
+                                }]);
                               }}
                               className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-4 rounded-lg transition-all shadow-lg text-base flex items-center justify-center gap-2"
                             >
@@ -4667,11 +4665,12 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
           <h3 className="text-xl font-bold text-white mb-3">📋 Regolamento</h3>
           <ul className="text-white/90 space-y-2">
             <li>• Due gironi da 5 squadre</li>
-            <li>• 1 set con killer point</li>
-            <li>• Sul 5 pari: tie break a 7</li>
-            <li>• Passano le prime due di ogni girone</li>
-            <li>• Criteri: scontri diretti, differenza game, game vinti</li>
-            <li>• Semifinali incrociate e finale</li>
+            <li>• 1 set vantaggio / killer point</li>
+            <li>• 5 pari: tie break a 7</li>
+            <li>• Semifinali: 1 set vantaggio / killer point</li>
+            <li>• Finalissima: 1 set vantaggio / killer point</li>
+            <li>• Passano i primi due del medesimo girone</li>
+            <li>• Criteri: scontri diretti / differenza game</li>
           </ul>
         </div>
       </div>
@@ -4688,7 +4687,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
             <div className="flex gap-3">
               <button
                 onClick={() => setShowLogoutConfirm(false)}
-                className="flex-1 bg-white/20 hover:bg-white/30 text-white font-bold py-3 rounded-lg transition-all border border-white/30"
+                className="flex-1 bg-white/20 hover:bg-white text-gray-900 font-bold py-3 rounded-lg transition-all border border-white/30"
               >
                 Annulla
               </button>
@@ -4728,7 +4727,7 @@ ${finaleResult.duration ? `<p style="color:white;margin-top:15px;font-size:16px"
             <div className="flex gap-3">
               <button
                 onClick={() => setShowResetModal(false)}
-                className="flex-1 bg-white/20 hover:bg-white/30 text-white font-bold py-3 rounded-lg transition-all border border-white/30"
+                className="flex-1 bg-white/20 hover:bg-white text-gray-900 font-bold py-3 rounded-lg transition-all border border-white/30"
               >
                 ❌ Annulla
               </button>
